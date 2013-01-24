@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <style>
+      @font-face {
+        font-family: testfont;
+        src: url('out/6x13-ISO8859-1.pcf.woff);
+      }
+      body {
+        font-family: testfont, courier;
+        font-size: 13px;
+        line-height: 13px;
+      }
+      p {
+        display: inline-block;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        border: 0;
+      }
+    </style>
+    <script src="../../jquery.js"></script>
+    <script src="../../async.js"></script>
+    <script>
+      $(function () {
+        var elem = $('p.testarea')
+          , width   = 6
+          , height  = 13
+          , min = 0
+          , max = 255
+          , chars = [];
+        for (var i = min; i <= max; i++)
+          chars.push(i);
+        async.forEachSeries(
+            chars
+          , function (char, cb) {
+              elem.text(String.fromCharCode(char));
+              setTimeout(function () {
+                var w = elem.width()
+                  , h = elem.height();
+                if ((w !== width) || (h !== height)) {
+                  if (w === 0 || h === 0) {
+                    console.log(
+                        'Char code'
+                      , char
+                      , '('
+                      , String.fromCharCode(char)
+                      , ') is not encoded'
+                    );
+                  } else {
+                    console.log(
+                        'Char code'
+                      , char
+                      , '('
+                      , String.fromCharCode(char)
+                      , ') does not fit fixed font with actual dimensions'
+                      , w
+                      , 'x'
+                      , h
+                    );
+                  }
+                }
+                cb();
+              }, 10);
+            }
+          , function (err) {
+              console.log('DONE');
+              var block = $('.testblock')
+                , w = block.width()
+                , h = block.height()
+                , ln = block.find('br').length + 1
+                , wc = block.text().replace(/[\r\n\s]*/g, '').length
+                , wc_ln = wc / ln;
+              console.log(w / wc_ln);
+              console.log(h / ln);
+            }
+        );
+      })
+    </script>
+  </head>
+  <body>
+    <p class="testarea">Q</p>
+    <br />
+    <p class="testblock">
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬<br />
+      QWERTYUIOPASFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmm1234567890-=[];'#/,.\!"£$%^&*()_+{}:@~<>?|`¬
+    </p>
+  </body>
+</html>

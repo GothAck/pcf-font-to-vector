@@ -1,0 +1,9 @@
+*.ttf
+*.woff
+*.sfd
+*.pcf
+*.json_svg
+fonts.dir
+fonts.cache
+*.meta.json
+*.names.json
