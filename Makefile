@@ -1,7 +1,15 @@
-all:
-	node font_converter.js
-	python font_converter.py 2> /dev/null
+all: svgs fonts
 
-test:
-	node font_converter.js
-	python font_converter.py
+svgs: *.pcf
+	@echo "Vectorising pcf files"
+	@node font_converter.js $?
+
+fonts: *.meta.json
+	@echo "Converting vectors to outline fonts"
+	@python font_converter.py $?
+
+*.pcf:
+	@echo "Vectorising pcf files"
+	@node font_converter.js $?
+	@echo "Converting vectors to outline fonts"
+	@python font_converter.py $?

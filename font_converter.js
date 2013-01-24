@@ -15,7 +15,10 @@ Object.keys(Buffer.prototype).filter(function (name) { return /(BE|LE)$/.test(na
 
 async.waterfall([
     function (callback) {
-      fs.readdir('./', callback);
+      if (! process.argv.slice(2).length)
+        fs.readdir('./', callback);
+      else
+        callback(null, process.argv.slice(2));
     }
   , function (files, callback) {
       files = files.filter(function (filename) { return /\.pcf$/.test(filename) });

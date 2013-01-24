@@ -1,8 +1,7 @@
 #!env python
 import os, sys, traceback, shutil, glob, string, json, fontforge, psMat
-import pysvg
 
-meta_filenames = [x for x in os.listdir('.') if x.endswith('.meta.json')]
+meta_filenames = [x for x in sys.argv[1:] if x.endswith('.meta.json')] or glob.glob('*.meta.json')
 
 for meta_filename in meta_filenames:
     base_name = meta_filename[:-10]
@@ -80,5 +79,5 @@ for meta_filename in meta_filenames:
     font.generate(base_name + '.woff')
     font.close()
     for file in glob.glob(font_name + '.pcf.*'):
-        shutil.move(file, 'out/')
+        os.rename(file, 'out/' + file)
 
