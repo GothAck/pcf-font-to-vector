@@ -79,6 +79,6 @@ for meta_filename in meta_filenames:
     font.save(base_name + '.sfd')
     font.generate(base_name + '.woff')
     font.close()
-    for file in glob.glob(font_name + '.*'):
+    for file in glob.glob(font_name + '.pcf.*'):
         shutil.move(file, 'out/')
 
