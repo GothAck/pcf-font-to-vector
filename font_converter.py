@@ -1,5 +1,5 @@
 #!env python
-import os, sys, traceback, shutil, glob, string, json, fontforge, psMat
+import os, sys, traceback, math, shutil, glob, string, json, fontforge, psMat
 
 meta_filenames = [x for x in sys.argv[1:] if x.endswith('.meta.json')] or glob.glob('*.meta.json')
 
@@ -77,6 +77,11 @@ for meta_filename in meta_filenames:
             char.simplify(0, ('mergelines'))
             char.autoHint()
             os.unlink(char_base_name + '.json_svg')
+
+    height = font.em
+    if height != int(pow(2, math.ceil(math.log(height) / math.log(2)))):
+        font.em  = min(int(pow(2, height)), 2048)
+    font.design_size = height
     font.save(base_name + '.sfd')
     font.generate(base_name + '.woff')
     font.close()
