@@ -51,6 +51,8 @@ for meta_filename in meta_filenames:
             raise Exception()
         else:
             name = None
+            if char_code < 0x21:
+                char_code += 0x2400
             if names.has_key(glyph_index):
                 name = str(names[glyph_index]).encode('ascii', 'ignore')
                 name = filter(lambda x: x in string.printable, name)
