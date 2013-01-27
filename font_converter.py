@@ -7,7 +7,7 @@ for meta_filename in meta_filenames:
     base_name = meta_filename[:-10]
     font_name = base_name[:-4]
     name_split = font_name.split('-', 1)
-    encoding = 'UTF-8' #name_split[1] if len(name_split) == 2 else 'UTF-8'
+    encoding = 'UnicodeFull' #name_split[1] if len(name_split) == 2 else 'UTF-8'
 
     print 'Processing', font_name
 
