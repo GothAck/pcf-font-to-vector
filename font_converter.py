@@ -53,6 +53,8 @@ for meta_filename in meta_filenames:
             name = None
             if char_code < 0x21:
                 char_code += 0x2400
+            if char_code > 0x7e and char_code < 0xa1:
+                char_code += 0xf800 - 0x7e
             if names.has_key(glyph_index):
                 name = str(names[glyph_index]).encode('ascii', 'ignore')
                 name = filter(lambda x: x in string.printable, name)
