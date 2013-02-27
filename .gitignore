@@ -7,3 +7,5 @@ fonts.dir
 fonts.cache
 *.meta.json
 *.names.json
+.project
+.settings
